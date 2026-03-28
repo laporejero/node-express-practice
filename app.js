@@ -56,7 +56,7 @@ app.post('/api/images', (req, res) => {
 
     const newImage = {
         id: Number(id),
-        url
+        url: url
     }
 
     images.push(newImage)
