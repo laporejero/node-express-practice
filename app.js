@@ -10,7 +10,10 @@ app.use(express.json())
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
 app.get('/api/images', (req, res) => {
-    res.status(200).json({success:true, data: images})
+    res.status(200).json({
+        success:true, 
+        data: images
+    })
 })
 
 // fetch a single data
@@ -64,6 +67,27 @@ app.post('/api/images', (req, res) => {
     res.status(201).json({
         success: true,
         data: newImage
+    })
+})
+
+// delete an existing data
+app.delete('/api/images/:id', (req, res) => {
+    const { id } = req.params
+
+    const imageIndex = images.findIndex(img => img.id === Number(id))
+
+    if (imageIndex === -1) {
+        return res.status(404).json({
+            success: false,
+            message: 'Image not found'
+        })
+    }
+
+    const deleteImage = images.splice(imageIndex, 1)
+
+    res.status(200).json({
+        success: true,
+        data: deleteImage[0]
     })
 })
 
