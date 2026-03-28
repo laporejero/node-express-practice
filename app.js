@@ -9,8 +9,8 @@ app.use(express.json())
 // server static files
 app.use('/images', express.static(path.join(__dirname, 'images')))
 
-app.get('/api/products', (req, res) => {
-    res.status(200).json({success:true, data: products})
+app.get('/api/images', (req, res) => {
+    res.status(200).json({success:true, data: images})
 })
 
 // fetch a single data
@@ -30,6 +30,40 @@ app.get('/api/images/:id', (req, res) => {
     res.status(200).json({
         success: true,
         data: image
+    })
+})
+
+// add new data
+app.post('/api/images', (req, res) => {
+    const { id, url } = req.body
+
+    // basic validation
+    if (!id || !url) {
+        return res.status(400).json({
+            success: false,
+            message: 'Please provide id and url'
+        })
+    }
+
+    // check if image already exists
+    const exists = images.find(img => img.id === Number(id))
+    if (exists) {
+        return res.status(409).json({
+            success: false,
+            message: 'Image with this ID already exists'
+        })
+    }
+
+    const newImage = {
+        id: Number(id),
+        url
+    }
+
+    images.push(newImage)
+
+    res.status(201).json({
+        success: true,
+        data: newImage
     })
 })
 
