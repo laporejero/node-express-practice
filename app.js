@@ -8,6 +8,7 @@ app.use(express.json())
 
 // server static files
 app.use('/images', express.static(path.join(__dirname, 'images')))
+app.use(express.static(path.join(__dirname)))
 
 app.get('/api/images', (req, res) => {
     res.status(200).json({
