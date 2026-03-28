@@ -1,13 +1,13 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const products = require('./data')
+const {products, images} = require('./data')
 
 // middleware
 app.use(express.json())
 
 // server static files
-// app.use('/images', express.static(path.join(__dirname, 'images')))
+app.use('/images', express.static(path.join(__dirname, 'images')))
 
 app.get('/api/products', (req, res) => {
     res.status(200).json({success:true, data: products})

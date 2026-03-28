@@ -9,4 +9,4 @@ const products = [
   { id: 2, name: "Phone", price: 25000 }
 ];
 
-module.exports = products
+module.exports = {products, images}
