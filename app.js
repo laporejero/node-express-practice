@@ -14,22 +14,22 @@ app.get('/api/products', (req, res) => {
 })
 
 // fetch a single data
-app.get('/api/products/:id', (req, res) => {
+app.get('/api/images/:id', (req, res) => {
     const { id } = req.params
-    const product = products.find(product => product.id === Number(id))
+    const image = images.find(img => img.id === Number(id))
 
-    if (!product) {
+    if (!image) {
         return res
             .status(404)
             .json({
                 success: false,
-                message: 'Product not found'
+                message: 'Image not found'
             })
     }
 
     res.status(200).json({
         success: true,
-        data: product
+        data: image
     })
 })
 
