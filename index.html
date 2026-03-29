@@ -6,9 +6,20 @@
     <title>Image Gallery</title>
 </head>
 <body>
+    
     <h1>My Image Gallery</h1>
+
+    <h3>Add New Image</h3>
+    <input type="number" id="imageId" placeholder="Enter ID">
+    <input type="text" id="imageUrl" placeholder="Enter Image URL">
+    <button onclick="addImage()">Add Image</button>
+
+    <hr>
+
     <button onclick="loadImages()">Load Images</button>
+
     <div id="gallery"></div>
+
     <script src="index.js"></script>
 </body>
 </html>
