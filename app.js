@@ -8,8 +8,10 @@ app.use(express.json())
 
 // server static files
 app.use('/images', express.static(path.join(__dirname, 'images')))
+// http://localhost:5000/index.html
 app.use(express.static(path.join(__dirname)))
 
+// fetch all images array
 app.get('/api/images', (req, res) => {
     res.status(200).json({
         success:true, 
