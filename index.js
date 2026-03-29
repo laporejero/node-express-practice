@@ -2,18 +2,29 @@ async function loadImages() {
     const res = await fetch('http://localhost:5000/api/images')
     const data = await res.json()
 
-    console.log(data)
-
     const gallery = document.getElementById('gallery')
     gallery.innerHTML = ''
 
     data.data.forEach(image => {
+        const container = document.createElement('div')
+
         const img = document.createElement('img')
         img.src = image.url
         img.style.width = '200px'
-        img.style.margin = '10px'
+        img.style.display = 'block'
+        img.style.marginTop = '10px'
 
-        gallery.appendChild(img)
+        const btn = document.createElement('button')
+        btn.textContent = 'Delete'
+        btn.style.display = 'block'
+        btn.style.marginTop = '5px'
+
+        btn.onclick = () => deleteImage(image.id)
+
+        container.appendChild(img)
+        container.appendChild(btn)
+
+        gallery.appendChild(container)
     });
 }
 
@@ -38,4 +49,15 @@ async function addImage() {
     console.log(data)
 
     loadImages() // refresh gallery
+}
+
+async function deleteImage(id) {
+    const res = await fetch(`http://localhost:5000/api/images/${id}`, {
+        method: 'DELETE'
+    })
+
+    const data = await res.json()
+    console.log(data)
+
+    loadImages()
 }
