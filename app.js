@@ -95,6 +95,7 @@ app.delete('/api/images/:id', (req, res) => {
 })
 
 // PUT route
+// https://picsum.photos/200
 app.put('/api/images/:id', (req, res) => {
     const { id } = req.params
     const { url } = req.body
