@@ -1,0 +1,19 @@
+#gallery {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.gallery-item {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.gallery-item img {
+    width: 200px;
+    height: 200px;
+    margin-top: 10px;
+}

@@ -7,17 +7,14 @@ async function loadImages() {
 
     data.data.forEach(image => {
         const container = document.createElement('div')
+        container.classList.add('gallery-item')
 
         const img = document.createElement('img')
         img.src = image.url
-        img.style.width = '200px'
-        img.style.display = 'block'
-        img.style.marginTop = '10px'
+        // img.style.display = 'block'
 
         const btn = document.createElement('button')
         btn.textContent = 'Delete'
-        btn.style.display = 'block'
-        btn.style.marginTop = '5px'
 
         btn.onclick = () => deleteImage(image.id)
 
