@@ -94,6 +94,37 @@ app.delete('/api/images/:id', (req, res) => {
     })
 })
 
+// PUT route
+app.put('/api/images/:id', (req, res) => {
+    const { id } = req.params
+    const { url } = req.body
+    
+    // validate input
+    if (!url) {
+        return res.status(400).json({
+            success: false,
+            message: 'Please provide URL'
+        })
+    }
+
+    const image = images.find(img => img.id === Number(id))
+
+    if (!image) {
+        res.status(404).json({
+            success: false,
+            message: 'Image not found'
+        })
+    }
+
+    // update the image
+    image.url = url
+
+    res.status(200).json({
+        success: true,
+        data: image
+    })
+})
+
 const PORT = 5000
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`)
